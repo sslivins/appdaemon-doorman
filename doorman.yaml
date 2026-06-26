@@ -1,0 +1,47 @@
+doorman:
+  module: doorman
+  class: Doorman
+  log: doorman_log
+  allowed_faces:
+    - stefan
+    - eric
+    - natalie
+    - mackenzie
+    - nadia
+    - megan
+  face_storage:
+    retention_days: 7
+    all_faces_directory: all_faces
+    accepted_faces_directory: accepted_faces
+  detection_sensor:
+    # Combined trigger: doorman wakes on whichever sensor fires first and keeps
+    # recognizing while EITHER is active. Motion usually wins the race and gives
+    # a head-start when you're moving; person_detected is the fallback for the
+    # stand-still case where motion alone can stall. Validated 2026-06-25 via a
+    # 3x3x3 stopwatch experiment - combined strictly dominates either alone.
+    entity:
+      - binary_sensor.front_door_camera_motion
+      - binary_sensor.front_door_camera_person_detected
+    detected_state: "on"
+    not_detected_state: "off"
+  door_sensor:
+    entity: binary_sensor.storage_room_alarm_panel_pro_zone_5
+    closed_state: "off"
+    poll_interval: 0.2  # seconds; how often to re-check while door is not yet closed
+  lock:
+    entity: lock.front_door_electric_strike
+  camera:
+    host: doorbell-camera.mi
+  g4_doorbell_pro:
+    nvr_host: video-recorder.mi
+    nvr_api_key: !secret nvr_api_key
+    camera_id: 6593562f01cee503e40026ad
+  compreface:
+    host: compreface.mi:8000
+    api_key: !secret compreface_api_key
+  match_accuracy:
+    box: 0.95
+    box_ratio: 0.005
+    face: 0.99
+  open_ai:
+    openai_key: !secret openai_key

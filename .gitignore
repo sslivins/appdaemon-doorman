@@ -1,0 +1,29 @@
+# Ignore Python cache files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore virtual environment directories
+venv/
+.env/
+env/
+
+# Ignore AppDaemon logs and temporary files
+logs/
+*.log
+
+# Ignore sensitive files
+secrets.yaml
+
+# Ignore face storage directories (generated images/data)
+all_faces/
+accepted_faces/
+
+# Ignore IDE/editor specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
