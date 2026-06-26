@@ -25,7 +25,7 @@ doorman:
     detected_state: "on"
     not_detected_state: "off"
   door_sensor:
-    entity: binary_sensor.storage_room_alarm_panel_pro_zone_5
+    entity: binary_sensor.storage_room_alarm_panel_pro_front_door
     closed_state: "off"
     poll_interval: 0.2  # seconds; how often to re-check while door is not yet closed
   lock:
